@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alibaba.medical.dao.InstrumentMapper" >
+  <resultMap id="BaseResultMap" type="com.alibaba.medical.pojo.Instrument" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="ins_number" property="insNumber" jdbcType="BIGINT" />
+    <result column="ins_name" property="insName" jdbcType="VARCHAR" />
+    <result column="ins_stock" property="insStock" jdbcType="INTEGER" />
+    <result column="ins_used" property="insUsed" jdbcType="INTEGER" />
+    <result column="ins_location" property="insLocation" jdbcType="VARCHAR" />
+    <result column="ins_status" property="insStatus" jdbcType="BIT" />
+    <result column="buy_date" property="buyDate" jdbcType="TIMESTAMP" />
+    <result column="destroy_date" property="destroyDate" jdbcType="TIMESTAMP" />
+    <result column="destroy_reason" property="destroyReason" jdbcType="VARCHAR" />
+    <result column="dept_id" property="deptId" jdbcType="BIGINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, ins_number, ins_name, ins_stock, ins_used, ins_location, ins_status, buy_date, 
+    destroy_date, destroy_reason, dept_id, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from instrument
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from instrument
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.alibaba.medical.pojo.Instrument" >
+    insert into instrument (id, ins_number, ins_name, 
+      ins_stock, ins_used, ins_location, 
+      ins_status, buy_date, destroy_date, 
+      destroy_reason, dept_id, remark
+      )
+    values (#{id,jdbcType=BIGINT}, #{insNumber,jdbcType=BIGINT}, #{insName,jdbcType=VARCHAR}, 
+      #{insStock,jdbcType=INTEGER}, #{insUsed,jdbcType=INTEGER}, #{insLocation,jdbcType=VARCHAR}, 
+      #{insStatus,jdbcType=BIT}, #{buyDate,jdbcType=TIMESTAMP}, #{destroyDate,jdbcType=TIMESTAMP}, 
+      #{destroyReason,jdbcType=VARCHAR}, #{deptId,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.alibaba.medical.pojo.Instrument" >
+    insert into instrument
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="insNumber != null" >
+        ins_number,
+      </if>
+      <if test="insName != null" >
+        ins_name,
+      </if>
+      <if test="insStock != null" >
+        ins_stock,
+      </if>
+      <if test="insUsed != null" >
+        ins_used,
+      </if>
+      <if test="insLocation != null" >
+        ins_location,
+      </if>
+      <if test="insStatus != null" >
+        ins_status,
+      </if>
+      <if test="buyDate != null" >
+        buy_date,
+      </if>
+      <if test="destroyDate != null" >
+        destroy_date,
+      </if>
+      <if test="destroyReason != null" >
+        destroy_reason,
+      </if>
+      <if test="deptId != null" >
+        dept_id,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="insNumber != null" >
+        #{insNumber,jdbcType=BIGINT},
+      </if>
+      <if test="insName != null" >
+        #{insName,jdbcType=VARCHAR},
+      </if>
+      <if test="insStock != null" >
+        #{insStock,jdbcType=INTEGER},
+      </if>
+      <if test="insUsed != null" >
+        #{insUsed,jdbcType=INTEGER},
+      </if>
+      <if test="insLocation != null" >
+        #{insLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="insStatus != null" >
+        #{insStatus,jdbcType=BIT},
+      </if>
+      <if test="buyDate != null" >
+        #{buyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="destroyDate != null" >
+        #{destroyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="destroyReason != null" >
+        #{destroyReason,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alibaba.medical.pojo.Instrument" >
+    update instrument
+    <set >
+      <if test="insNumber != null" >
+        ins_number = #{insNumber,jdbcType=BIGINT},
+      </if>
+      <if test="insName != null" >
+        ins_name = #{insName,jdbcType=VARCHAR},
+      </if>
+      <if test="insStock != null" >
+        ins_stock = #{insStock,jdbcType=INTEGER},
+      </if>
+      <if test="insUsed != null" >
+        ins_used = #{insUsed,jdbcType=INTEGER},
+      </if>
+      <if test="insLocation != null" >
+        ins_location = #{insLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="insStatus != null" >
+        ins_status = #{insStatus,jdbcType=BIT},
+      </if>
+      <if test="buyDate != null" >
+        buy_date = #{buyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="destroyDate != null" >
+        destroy_date = #{destroyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="destroyReason != null" >
+        destroy_reason = #{destroyReason,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        dept_id = #{deptId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alibaba.medical.pojo.Instrument" >
+    update instrument
+    set ins_number = #{insNumber,jdbcType=BIGINT},
+      ins_name = #{insName,jdbcType=VARCHAR},
+      ins_stock = #{insStock,jdbcType=INTEGER},
+      ins_used = #{insUsed,jdbcType=INTEGER},
+      ins_location = #{insLocation,jdbcType=VARCHAR},
+      ins_status = #{insStatus,jdbcType=BIT},
+      buy_date = #{buyDate,jdbcType=TIMESTAMP},
+      destroy_date = #{destroyDate,jdbcType=TIMESTAMP},
+      destroy_reason = #{destroyReason,jdbcType=VARCHAR},
+      dept_id = #{deptId,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

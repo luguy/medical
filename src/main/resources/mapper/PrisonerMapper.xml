@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alibaba.medical.dao.PrisonerMapper" >
+  <resultMap id="BaseResultMap" type="com.alibaba.medical.pojo.Prisoner" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="prisoner_number" property="prisonerNumber" jdbcType="BIGINT" />
+    <result column="prisoner_prison" property="prisonerPrison" jdbcType="VARCHAR" />
+    <result column="file_number" property="fileNumber" jdbcType="BIGINT" />
+    <result column="prisoner_name" property="prisonerName" jdbcType="VARCHAR" />
+    <result column="prisoner_gender" property="prisonerGender" jdbcType="BIT" />
+    <result column="prisoner_birthday" property="prisonerBirthday" jdbcType="VARCHAR" />
+    <result column="prison_address" property="prisonAddress" jdbcType="VARCHAR" />
+    <result column="contacts" property="contacts" jdbcType="VARCHAR" />
+    <result column="contacts_relation" property="contactsRelation" jdbcType="VARCHAR" />
+    <result column="contacts_phone" property="contactsPhone" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="recent_performance" property="recentPerformance" jdbcType="VARCHAR" />
+    <result column="family_status" property="familyStatus" jdbcType="VARCHAR" />
+    <result column="attention" property="attention" jdbcType="VARCHAR" />
+    <result column="character_status" property="characterStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, prisoner_number, prisoner_prison, file_number, prisoner_name, prisoner_gender, 
+    prisoner_birthday, prison_address, contacts, contacts_relation, contacts_phone, create_date, 
+    recent_performance, family_status, attention, character_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from prisoner
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from prisoner
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.alibaba.medical.pojo.Prisoner" >
+    insert into prisoner (id, prisoner_number, prisoner_prison, 
+      file_number, prisoner_name, prisoner_gender, 
+      prisoner_birthday, prison_address, contacts, 
+      contacts_relation, contacts_phone, create_date, 
+      recent_performance, family_status, attention, 
+      character_status)
+    values (#{id,jdbcType=BIGINT}, #{prisonerNumber,jdbcType=BIGINT}, #{prisonerPrison,jdbcType=VARCHAR}, 
+      #{fileNumber,jdbcType=BIGINT}, #{prisonerName,jdbcType=VARCHAR}, #{prisonerGender,jdbcType=BIT}, 
+      #{prisonerBirthday,jdbcType=VARCHAR}, #{prisonAddress,jdbcType=VARCHAR}, #{contacts,jdbcType=VARCHAR}, 
+      #{contactsRelation,jdbcType=VARCHAR}, #{contactsPhone,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{recentPerformance,jdbcType=VARCHAR}, #{familyStatus,jdbcType=VARCHAR}, #{attention,jdbcType=VARCHAR}, 
+      #{characterStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.alibaba.medical.pojo.Prisoner" >
+    insert into prisoner
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="prisonerNumber != null" >
+        prisoner_number,
+      </if>
+      <if test="prisonerPrison != null" >
+        prisoner_prison,
+      </if>
+      <if test="fileNumber != null" >
+        file_number,
+      </if>
+      <if test="prisonerName != null" >
+        prisoner_name,
+      </if>
+      <if test="prisonerGender != null" >
+        prisoner_gender,
+      </if>
+      <if test="prisonerBirthday != null" >
+        prisoner_birthday,
+      </if>
+      <if test="prisonAddress != null" >
+        prison_address,
+      </if>
+      <if test="contacts != null" >
+        contacts,
+      </if>
+      <if test="contactsRelation != null" >
+        contacts_relation,
+      </if>
+      <if test="contactsPhone != null" >
+        contacts_phone,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="recentPerformance != null" >
+        recent_performance,
+      </if>
+      <if test="familyStatus != null" >
+        family_status,
+      </if>
+      <if test="attention != null" >
+        attention,
+      </if>
+      <if test="characterStatus != null" >
+        character_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="prisonerNumber != null" >
+        #{prisonerNumber,jdbcType=BIGINT},
+      </if>
+      <if test="prisonerPrison != null" >
+        #{prisonerPrison,jdbcType=VARCHAR},
+      </if>
+      <if test="fileNumber != null" >
+        #{fileNumber,jdbcType=BIGINT},
+      </if>
+      <if test="prisonerName != null" >
+        #{prisonerName,jdbcType=VARCHAR},
+      </if>
+      <if test="prisonerGender != null" >
+        #{prisonerGender,jdbcType=BIT},
+      </if>
+      <if test="prisonerBirthday != null" >
+        #{prisonerBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="prisonAddress != null" >
+        #{prisonAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsRelation != null" >
+        #{contactsRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsPhone != null" >
+        #{contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recentPerformance != null" >
+        #{recentPerformance,jdbcType=VARCHAR},
+      </if>
+      <if test="familyStatus != null" >
+        #{familyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="attention != null" >
+        #{attention,jdbcType=VARCHAR},
+      </if>
+      <if test="characterStatus != null" >
+        #{characterStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alibaba.medical.pojo.Prisoner" >
+    update prisoner
+    <set >
+      <if test="prisonerNumber != null" >
+        prisoner_number = #{prisonerNumber,jdbcType=BIGINT},
+      </if>
+      <if test="prisonerPrison != null" >
+        prisoner_prison = #{prisonerPrison,jdbcType=VARCHAR},
+      </if>
+      <if test="fileNumber != null" >
+        file_number = #{fileNumber,jdbcType=BIGINT},
+      </if>
+      <if test="prisonerName != null" >
+        prisoner_name = #{prisonerName,jdbcType=VARCHAR},
+      </if>
+      <if test="prisonerGender != null" >
+        prisoner_gender = #{prisonerGender,jdbcType=BIT},
+      </if>
+      <if test="prisonerBirthday != null" >
+        prisoner_birthday = #{prisonerBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="prisonAddress != null" >
+        prison_address = #{prisonAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        contacts = #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsRelation != null" >
+        contacts_relation = #{contactsRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsPhone != null" >
+        contacts_phone = #{contactsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recentPerformance != null" >
+        recent_performance = #{recentPerformance,jdbcType=VARCHAR},
+      </if>
+      <if test="familyStatus != null" >
+        family_status = #{familyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="attention != null" >
+        attention = #{attention,jdbcType=VARCHAR},
+      </if>
+      <if test="characterStatus != null" >
+        character_status = #{characterStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alibaba.medical.pojo.Prisoner" >
+    update prisoner
+    set prisoner_number = #{prisonerNumber,jdbcType=BIGINT},
+      prisoner_prison = #{prisonerPrison,jdbcType=VARCHAR},
+      file_number = #{fileNumber,jdbcType=BIGINT},
+      prisoner_name = #{prisonerName,jdbcType=VARCHAR},
+      prisoner_gender = #{prisonerGender,jdbcType=BIT},
+      prisoner_birthday = #{prisonerBirthday,jdbcType=VARCHAR},
+      prison_address = #{prisonAddress,jdbcType=VARCHAR},
+      contacts = #{contacts,jdbcType=VARCHAR},
+      contacts_relation = #{contactsRelation,jdbcType=VARCHAR},
+      contacts_phone = #{contactsPhone,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      recent_performance = #{recentPerformance,jdbcType=VARCHAR},
+      family_status = #{familyStatus,jdbcType=VARCHAR},
+      attention = #{attention,jdbcType=VARCHAR},
+      character_status = #{characterStatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

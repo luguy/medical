@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alibaba.medical.dao.DailyDoctorMapper" >
+  <resultMap id="BaseResultMap" type="com.alibaba.medical.pojo.DailyDoctor" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="daily_number" property="dailyNumber" jdbcType="BIGINT" />
+    <result column="prisoner_number" property="prisonerNumber" jdbcType="BIGINT" />
+    <result column="daily_project" property="dailyProject" jdbcType="VARCHAR" />
+    <result column="daily_result" property="dailyResult" jdbcType="VARCHAR" />
+    <result column="daily_doctor" property="dailyDoctor" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="daily_describe" property="dailyDescribe" jdbcType="VARCHAR" />
+    <result column="remake" property="remake" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, daily_number, prisoner_number, daily_project, daily_result, daily_doctor, create_date, 
+    daily_describe, remake
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from daily_doctor
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from daily_doctor
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.alibaba.medical.pojo.DailyDoctor" >
+    insert into daily_doctor (id, daily_number, prisoner_number, 
+      daily_project, daily_result, daily_doctor, 
+      create_date, daily_describe, remake
+      )
+    values (#{id,jdbcType=BIGINT}, #{dailyNumber,jdbcType=BIGINT}, #{prisonerNumber,jdbcType=BIGINT}, 
+      #{dailyProject,jdbcType=VARCHAR}, #{dailyResult,jdbcType=VARCHAR}, #{dailyDoctor,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{dailyDescribe,jdbcType=VARCHAR}, #{remake,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.alibaba.medical.pojo.DailyDoctor" >
+    insert into daily_doctor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dailyNumber != null" >
+        daily_number,
+      </if>
+      <if test="prisonerNumber != null" >
+        prisoner_number,
+      </if>
+      <if test="dailyProject != null" >
+        daily_project,
+      </if>
+      <if test="dailyResult != null" >
+        daily_result,
+      </if>
+      <if test="dailyDoctor != null" >
+        daily_doctor,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="dailyDescribe != null" >
+        daily_describe,
+      </if>
+      <if test="remake != null" >
+        remake,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="dailyNumber != null" >
+        #{dailyNumber,jdbcType=BIGINT},
+      </if>
+      <if test="prisonerNumber != null" >
+        #{prisonerNumber,jdbcType=BIGINT},
+      </if>
+      <if test="dailyProject != null" >
+        #{dailyProject,jdbcType=VARCHAR},
+      </if>
+      <if test="dailyResult != null" >
+        #{dailyResult,jdbcType=VARCHAR},
+      </if>
+      <if test="dailyDoctor != null" >
+        #{dailyDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dailyDescribe != null" >
+        #{dailyDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="remake != null" >
+        #{remake,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alibaba.medical.pojo.DailyDoctor" >
+    update daily_doctor
+    <set >
+      <if test="dailyNumber != null" >
+        daily_number = #{dailyNumber,jdbcType=BIGINT},
+      </if>
+      <if test="prisonerNumber != null" >
+        prisoner_number = #{prisonerNumber,jdbcType=BIGINT},
+      </if>
+      <if test="dailyProject != null" >
+        daily_project = #{dailyProject,jdbcType=VARCHAR},
+      </if>
+      <if test="dailyResult != null" >
+        daily_result = #{dailyResult,jdbcType=VARCHAR},
+      </if>
+      <if test="dailyDoctor != null" >
+        daily_doctor = #{dailyDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dailyDescribe != null" >
+        daily_describe = #{dailyDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="remake != null" >
+        remake = #{remake,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alibaba.medical.pojo.DailyDoctor" >
+    update daily_doctor
+    set daily_number = #{dailyNumber,jdbcType=BIGINT},
+      prisoner_number = #{prisonerNumber,jdbcType=BIGINT},
+      daily_project = #{dailyProject,jdbcType=VARCHAR},
+      daily_result = #{dailyResult,jdbcType=VARCHAR},
+      daily_doctor = #{dailyDoctor,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      daily_describe = #{dailyDescribe,jdbcType=VARCHAR},
+      remake = #{remake,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

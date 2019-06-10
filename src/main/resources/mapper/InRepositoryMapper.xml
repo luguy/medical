@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alibaba.medical.dao.InRepositoryMapper" >
+  <resultMap id="BaseResultMap" type="com.alibaba.medical.pojo.InRepository" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="inrep_id" property="inrepId" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="applicant" property="applicant" jdbcType="VARCHAR" />
+    <result column="apply_date" property="applyDate" jdbcType="TIMESTAMP" />
+    <result column="apply_title" property="applyTitle" jdbcType="VARCHAR" />
+    <result column="apply_type" property="applyType" jdbcType="VARCHAR" />
+    <result column="apply_cause" property="applyCause" jdbcType="VARCHAR" />
+    <result column="apply_content" property="applyContent" jdbcType="VARCHAR" />
+    <result column="approver" property="approver" jdbcType="VARCHAR" />
+    <result column="approve_date" property="approveDate" jdbcType="TIMESTAMP" />
+    <result column="approve_result" property="approveResult" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="clearing" property="clearing" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, inrep_id, create_date, applicant, apply_date, apply_title, apply_type, apply_cause, 
+    apply_content, approver, approve_date, approve_result, remark, status, clearing
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from in_repository
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from in_repository
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.alibaba.medical.pojo.InRepository" >
+    insert into in_repository (id, inrep_id, create_date, 
+      applicant, apply_date, apply_title, 
+      apply_type, apply_cause, apply_content, 
+      approver, approve_date, approve_result, 
+      remark, status, clearing)
+    values (#{id,jdbcType=BIGINT}, #{inrepId,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{applicant,jdbcType=VARCHAR}, #{applyDate,jdbcType=TIMESTAMP}, #{applyTitle,jdbcType=VARCHAR}, 
+      #{applyType,jdbcType=VARCHAR}, #{applyCause,jdbcType=VARCHAR}, #{applyContent,jdbcType=VARCHAR}, 
+      #{approver,jdbcType=VARCHAR}, #{approveDate,jdbcType=TIMESTAMP}, #{approveResult,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{clearing,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.alibaba.medical.pojo.InRepository" >
+    insert into in_repository
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="inrepId != null" >
+        inrep_id,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="applicant != null" >
+        applicant,
+      </if>
+      <if test="applyDate != null" >
+        apply_date,
+      </if>
+      <if test="applyTitle != null" >
+        apply_title,
+      </if>
+      <if test="applyType != null" >
+        apply_type,
+      </if>
+      <if test="applyCause != null" >
+        apply_cause,
+      </if>
+      <if test="applyContent != null" >
+        apply_content,
+      </if>
+      <if test="approver != null" >
+        approver,
+      </if>
+      <if test="approveDate != null" >
+        approve_date,
+      </if>
+      <if test="approveResult != null" >
+        approve_result,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="clearing != null" >
+        clearing,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="inrepId != null" >
+        #{inrepId,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applicant != null" >
+        #{applicant,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null" >
+        #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyTitle != null" >
+        #{applyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="applyType != null" >
+        #{applyType,jdbcType=VARCHAR},
+      </if>
+      <if test="applyCause != null" >
+        #{applyCause,jdbcType=VARCHAR},
+      </if>
+      <if test="applyContent != null" >
+        #{applyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="approver != null" >
+        #{approver,jdbcType=VARCHAR},
+      </if>
+      <if test="approveDate != null" >
+        #{approveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approveResult != null" >
+        #{approveResult,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="clearing != null" >
+        #{clearing,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alibaba.medical.pojo.InRepository" >
+    update in_repository
+    <set >
+      <if test="inrepId != null" >
+        inrep_id = #{inrepId,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applicant != null" >
+        applicant = #{applicant,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null" >
+        apply_date = #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyTitle != null" >
+        apply_title = #{applyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="applyType != null" >
+        apply_type = #{applyType,jdbcType=VARCHAR},
+      </if>
+      <if test="applyCause != null" >
+        apply_cause = #{applyCause,jdbcType=VARCHAR},
+      </if>
+      <if test="applyContent != null" >
+        apply_content = #{applyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="approver != null" >
+        approver = #{approver,jdbcType=VARCHAR},
+      </if>
+      <if test="approveDate != null" >
+        approve_date = #{approveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approveResult != null" >
+        approve_result = #{approveResult,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="clearing != null" >
+        clearing = #{clearing,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alibaba.medical.pojo.InRepository" >
+    update in_repository
+    set inrep_id = #{inrepId,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      applicant = #{applicant,jdbcType=VARCHAR},
+      apply_date = #{applyDate,jdbcType=TIMESTAMP},
+      apply_title = #{applyTitle,jdbcType=VARCHAR},
+      apply_type = #{applyType,jdbcType=VARCHAR},
+      apply_cause = #{applyCause,jdbcType=VARCHAR},
+      apply_content = #{applyContent,jdbcType=VARCHAR},
+      approver = #{approver,jdbcType=VARCHAR},
+      approve_date = #{approveDate,jdbcType=TIMESTAMP},
+      approve_result = #{approveResult,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      clearing = #{clearing,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

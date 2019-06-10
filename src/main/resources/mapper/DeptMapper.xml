@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alibaba.medical.dao.DeptMapper" >
+  <resultMap id="BaseResultMap" type="com.alibaba.medical.pojo.Dept" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
+    <result column="dept_status" property="deptStatus" jdbcType="BIT" />
+    <result column="dept_number" property="deptNumber" jdbcType="BIGINT" />
+    <result column="dept_function" property="deptFunction" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, dept_name, dept_status, dept_number, dept_function, remark, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from dept
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dept
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.alibaba.medical.pojo.Dept" >
+    insert into dept (id, dept_name, dept_status, 
+      dept_number, dept_function, remark, 
+      create_date, update_date)
+    values (#{id,jdbcType=BIGINT}, #{deptName,jdbcType=VARCHAR}, #{deptStatus,jdbcType=BIT}, 
+      #{deptNumber,jdbcType=BIGINT}, #{deptFunction,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.alibaba.medical.pojo.Dept" >
+    insert into dept
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="deptName != null" >
+        dept_name,
+      </if>
+      <if test="deptStatus != null" >
+        dept_status,
+      </if>
+      <if test="deptNumber != null" >
+        dept_number,
+      </if>
+      <if test="deptFunction != null" >
+        dept_function,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptStatus != null" >
+        #{deptStatus,jdbcType=BIT},
+      </if>
+      <if test="deptNumber != null" >
+        #{deptNumber,jdbcType=BIGINT},
+      </if>
+      <if test="deptFunction != null" >
+        #{deptFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alibaba.medical.pojo.Dept" >
+    update dept
+    <set >
+      <if test="deptName != null" >
+        dept_name = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptStatus != null" >
+        dept_status = #{deptStatus,jdbcType=BIT},
+      </if>
+      <if test="deptNumber != null" >
+        dept_number = #{deptNumber,jdbcType=BIGINT},
+      </if>
+      <if test="deptFunction != null" >
+        dept_function = #{deptFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alibaba.medical.pojo.Dept" >
+    update dept
+    set dept_name = #{deptName,jdbcType=VARCHAR},
+      dept_status = #{deptStatus,jdbcType=BIT},
+      dept_number = #{deptNumber,jdbcType=BIGINT},
+      dept_function = #{deptFunction,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alibaba.medical.dao.PscExamMapper" >
+  <resultMap id="BaseResultMap" type="com.alibaba.medical.pojo.PscExam" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="psc_number" property="pscNumber" jdbcType="BIGINT" />
+    <result column="prisoner_number" property="prisonerNumber" jdbcType="BIGINT" />
+    <result column="anamnesis" property="anamnesis" jdbcType="VARCHAR" />
+    <result column="Immediate_medical" property="immediateMedical" jdbcType="VARCHAR" />
+    <result column="obj_exam" property="objExam" jdbcType="VARCHAR" />
+    <result column="preliminary_conclusion" property="preliminaryConclusion" jdbcType="VARCHAR" />
+    <result column="main_doctor" property="mainDoctor" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="remake" property="remake" jdbcType="VARCHAR" />
+    <result column="doctor_number" property="doctorNumber" jdbcType="BIGINT" />
+    <result column="exam_date" property="examDate" jdbcType="TIMESTAMP" />
+    <result column="exam_project" property="examProject" jdbcType="VARCHAR" />
+    <result column="exam_result" property="examResult" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, psc_number, prisoner_number, anamnesis, Immediate_medical, obj_exam, preliminary_conclusion, 
+    main_doctor, create_date, remake, doctor_number, exam_date, exam_project, exam_result
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from psc_exam
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from psc_exam
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.alibaba.medical.pojo.PscExam" >
+    insert into psc_exam (id, psc_number, prisoner_number, 
+      anamnesis, Immediate_medical, obj_exam, 
+      preliminary_conclusion, main_doctor, create_date, 
+      remake, doctor_number, exam_date, 
+      exam_project, exam_result)
+    values (#{id,jdbcType=BIGINT}, #{pscNumber,jdbcType=BIGINT}, #{prisonerNumber,jdbcType=BIGINT}, 
+      #{anamnesis,jdbcType=VARCHAR}, #{immediateMedical,jdbcType=VARCHAR}, #{objExam,jdbcType=VARCHAR}, 
+      #{preliminaryConclusion,jdbcType=VARCHAR}, #{mainDoctor,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{remake,jdbcType=VARCHAR}, #{doctorNumber,jdbcType=BIGINT}, #{examDate,jdbcType=TIMESTAMP}, 
+      #{examProject,jdbcType=VARCHAR}, #{examResult,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.alibaba.medical.pojo.PscExam" >
+    insert into psc_exam
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="pscNumber != null" >
+        psc_number,
+      </if>
+      <if test="prisonerNumber != null" >
+        prisoner_number,
+      </if>
+      <if test="anamnesis != null" >
+        anamnesis,
+      </if>
+      <if test="immediateMedical != null" >
+        Immediate_medical,
+      </if>
+      <if test="objExam != null" >
+        obj_exam,
+      </if>
+      <if test="preliminaryConclusion != null" >
+        preliminary_conclusion,
+      </if>
+      <if test="mainDoctor != null" >
+        main_doctor,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="remake != null" >
+        remake,
+      </if>
+      <if test="doctorNumber != null" >
+        doctor_number,
+      </if>
+      <if test="examDate != null" >
+        exam_date,
+      </if>
+      <if test="examProject != null" >
+        exam_project,
+      </if>
+      <if test="examResult != null" >
+        exam_result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="pscNumber != null" >
+        #{pscNumber,jdbcType=BIGINT},
+      </if>
+      <if test="prisonerNumber != null" >
+        #{prisonerNumber,jdbcType=BIGINT},
+      </if>
+      <if test="anamnesis != null" >
+        #{anamnesis,jdbcType=VARCHAR},
+      </if>
+      <if test="immediateMedical != null" >
+        #{immediateMedical,jdbcType=VARCHAR},
+      </if>
+      <if test="objExam != null" >
+        #{objExam,jdbcType=VARCHAR},
+      </if>
+      <if test="preliminaryConclusion != null" >
+        #{preliminaryConclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="mainDoctor != null" >
+        #{mainDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remake != null" >
+        #{remake,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorNumber != null" >
+        #{doctorNumber,jdbcType=BIGINT},
+      </if>
+      <if test="examDate != null" >
+        #{examDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examProject != null" >
+        #{examProject,jdbcType=VARCHAR},
+      </if>
+      <if test="examResult != null" >
+        #{examResult,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alibaba.medical.pojo.PscExam" >
+    update psc_exam
+    <set >
+      <if test="pscNumber != null" >
+        psc_number = #{pscNumber,jdbcType=BIGINT},
+      </if>
+      <if test="prisonerNumber != null" >
+        prisoner_number = #{prisonerNumber,jdbcType=BIGINT},
+      </if>
+      <if test="anamnesis != null" >
+        anamnesis = #{anamnesis,jdbcType=VARCHAR},
+      </if>
+      <if test="immediateMedical != null" >
+        Immediate_medical = #{immediateMedical,jdbcType=VARCHAR},
+      </if>
+      <if test="objExam != null" >
+        obj_exam = #{objExam,jdbcType=VARCHAR},
+      </if>
+      <if test="preliminaryConclusion != null" >
+        preliminary_conclusion = #{preliminaryConclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="mainDoctor != null" >
+        main_doctor = #{mainDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remake != null" >
+        remake = #{remake,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorNumber != null" >
+        doctor_number = #{doctorNumber,jdbcType=BIGINT},
+      </if>
+      <if test="examDate != null" >
+        exam_date = #{examDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examProject != null" >
+        exam_project = #{examProject,jdbcType=VARCHAR},
+      </if>
+      <if test="examResult != null" >
+        exam_result = #{examResult,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alibaba.medical.pojo.PscExam" >
+    update psc_exam
+    set psc_number = #{pscNumber,jdbcType=BIGINT},
+      prisoner_number = #{prisonerNumber,jdbcType=BIGINT},
+      anamnesis = #{anamnesis,jdbcType=VARCHAR},
+      Immediate_medical = #{immediateMedical,jdbcType=VARCHAR},
+      obj_exam = #{objExam,jdbcType=VARCHAR},
+      preliminary_conclusion = #{preliminaryConclusion,jdbcType=VARCHAR},
+      main_doctor = #{mainDoctor,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      remake = #{remake,jdbcType=VARCHAR},
+      doctor_number = #{doctorNumber,jdbcType=BIGINT},
+      exam_date = #{examDate,jdbcType=TIMESTAMP},
+      exam_project = #{examProject,jdbcType=VARCHAR},
+      exam_result = #{examResult,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

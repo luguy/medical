@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alibaba.medical.dao.InstrumentOutRepositoryMapper" >
+  <resultMap id="BaseResultMap" type="com.alibaba.medical.pojo.InstrumentOutRepository" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="outrep_id" property="outrepId" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="out_type" property="outType" jdbcType="VARCHAR" />
+    <result column="out_people" property="outPeople" jdbcType="VARCHAR" />
+    <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
+    <result column="recipient" property="recipient" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, outrep_id, create_date, out_type, out_people, dept_name, recipient, status, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from instrument_out_repository
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from instrument_out_repository
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.alibaba.medical.pojo.InstrumentOutRepository" >
+    insert into instrument_out_repository (id, outrep_id, create_date, 
+      out_type, out_people, dept_name, 
+      recipient, status, remark
+      )
+    values (#{id,jdbcType=BIGINT}, #{outrepId,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{outType,jdbcType=VARCHAR}, #{outPeople,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR}, 
+      #{recipient,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.alibaba.medical.pojo.InstrumentOutRepository" >
+    insert into instrument_out_repository
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="outrepId != null" >
+        outrep_id,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="outType != null" >
+        out_type,
+      </if>
+      <if test="outPeople != null" >
+        out_people,
+      </if>
+      <if test="deptName != null" >
+        dept_name,
+      </if>
+      <if test="recipient != null" >
+        recipient,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="outrepId != null" >
+        #{outrepId,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outType != null" >
+        #{outType,jdbcType=VARCHAR},
+      </if>
+      <if test="outPeople != null" >
+        #{outPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="recipient != null" >
+        #{recipient,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alibaba.medical.pojo.InstrumentOutRepository" >
+    update instrument_out_repository
+    <set >
+      <if test="outrepId != null" >
+        outrep_id = #{outrepId,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outType != null" >
+        out_type = #{outType,jdbcType=VARCHAR},
+      </if>
+      <if test="outPeople != null" >
+        out_people = #{outPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        dept_name = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="recipient != null" >
+        recipient = #{recipient,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alibaba.medical.pojo.InstrumentOutRepository" >
+    update instrument_out_repository
+    set outrep_id = #{outrepId,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      out_type = #{outType,jdbcType=VARCHAR},
+      out_people = #{outPeople,jdbcType=VARCHAR},
+      dept_name = #{deptName,jdbcType=VARCHAR},
+      recipient = #{recipient,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

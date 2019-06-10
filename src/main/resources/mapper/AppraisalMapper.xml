@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alibaba.medical.dao.AppraisalMapper" >
+  <resultMap id="BaseResultMap" type="com.alibaba.medical.pojo.Appraisal" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="appraisal_number" property="appraisalNumber" jdbcType="BIGINT" />
+    <result column="prisoner_number" property="prisonerNumber" jdbcType="BIGINT" />
+    <result column="appraisal_type" property="appraisalType" jdbcType="VARCHAR" />
+    <result column="submitter" property="submitter" jdbcType="VARCHAR" />
+    <result column="confirmer" property="confirmer" jdbcType="VARCHAR" />
+    <result column="submit_date" property="submitDate" jdbcType="TIMESTAMP" />
+    <result column="confirem_date" property="confiremDate" jdbcType="TIMESTAMP" />
+    <result column="appraisal_result" property="appraisalResult" jdbcType="VARCHAR" />
+    <result column="remake" property="remake" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, appraisal_number, prisoner_number, appraisal_type, submitter, confirmer, submit_date, 
+    confirem_date, appraisal_result, remake
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from appraisal
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from appraisal
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.alibaba.medical.pojo.Appraisal" >
+    insert into appraisal (id, appraisal_number, prisoner_number, 
+      appraisal_type, submitter, confirmer, 
+      submit_date, confirem_date, appraisal_result, 
+      remake)
+    values (#{id,jdbcType=BIGINT}, #{appraisalNumber,jdbcType=BIGINT}, #{prisonerNumber,jdbcType=BIGINT}, 
+      #{appraisalType,jdbcType=VARCHAR}, #{submitter,jdbcType=VARCHAR}, #{confirmer,jdbcType=VARCHAR}, 
+      #{submitDate,jdbcType=TIMESTAMP}, #{confiremDate,jdbcType=TIMESTAMP}, #{appraisalResult,jdbcType=VARCHAR}, 
+      #{remake,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.alibaba.medical.pojo.Appraisal" >
+    insert into appraisal
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="appraisalNumber != null" >
+        appraisal_number,
+      </if>
+      <if test="prisonerNumber != null" >
+        prisoner_number,
+      </if>
+      <if test="appraisalType != null" >
+        appraisal_type,
+      </if>
+      <if test="submitter != null" >
+        submitter,
+      </if>
+      <if test="confirmer != null" >
+        confirmer,
+      </if>
+      <if test="submitDate != null" >
+        submit_date,
+      </if>
+      <if test="confiremDate != null" >
+        confirem_date,
+      </if>
+      <if test="appraisalResult != null" >
+        appraisal_result,
+      </if>
+      <if test="remake != null" >
+        remake,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appraisalNumber != null" >
+        #{appraisalNumber,jdbcType=BIGINT},
+      </if>
+      <if test="prisonerNumber != null" >
+        #{prisonerNumber,jdbcType=BIGINT},
+      </if>
+      <if test="appraisalType != null" >
+        #{appraisalType,jdbcType=VARCHAR},
+      </if>
+      <if test="submitter != null" >
+        #{submitter,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmer != null" >
+        #{confirmer,jdbcType=VARCHAR},
+      </if>
+      <if test="submitDate != null" >
+        #{submitDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confiremDate != null" >
+        #{confiremDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appraisalResult != null" >
+        #{appraisalResult,jdbcType=VARCHAR},
+      </if>
+      <if test="remake != null" >
+        #{remake,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alibaba.medical.pojo.Appraisal" >
+    update appraisal
+    <set >
+      <if test="appraisalNumber != null" >
+        appraisal_number = #{appraisalNumber,jdbcType=BIGINT},
+      </if>
+      <if test="prisonerNumber != null" >
+        prisoner_number = #{prisonerNumber,jdbcType=BIGINT},
+      </if>
+      <if test="appraisalType != null" >
+        appraisal_type = #{appraisalType,jdbcType=VARCHAR},
+      </if>
+      <if test="submitter != null" >
+        submitter = #{submitter,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmer != null" >
+        confirmer = #{confirmer,jdbcType=VARCHAR},
+      </if>
+      <if test="submitDate != null" >
+        submit_date = #{submitDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confiremDate != null" >
+        confirem_date = #{confiremDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appraisalResult != null" >
+        appraisal_result = #{appraisalResult,jdbcType=VARCHAR},
+      </if>
+      <if test="remake != null" >
+        remake = #{remake,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alibaba.medical.pojo.Appraisal" >
+    update appraisal
+    set appraisal_number = #{appraisalNumber,jdbcType=BIGINT},
+      prisoner_number = #{prisonerNumber,jdbcType=BIGINT},
+      appraisal_type = #{appraisalType,jdbcType=VARCHAR},
+      submitter = #{submitter,jdbcType=VARCHAR},
+      confirmer = #{confirmer,jdbcType=VARCHAR},
+      submit_date = #{submitDate,jdbcType=TIMESTAMP},
+      confirem_date = #{confiremDate,jdbcType=TIMESTAMP},
+      appraisal_result = #{appraisalResult,jdbcType=VARCHAR},
+      remake = #{remake,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

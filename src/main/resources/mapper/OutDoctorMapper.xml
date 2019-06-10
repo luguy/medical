@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alibaba.medical.dao.OutDoctorMapper" >
+  <resultMap id="BaseResultMap" type="com.alibaba.medical.pojo.OutDoctor" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="outdt_number" property="outdtNumber" jdbcType="BIGINT" />
+    <result column="prisoner_number" property="prisonerNumber" jdbcType="BIGINT" />
+    <result column="out_type" property="outType" jdbcType="VARCHAR" />
+    <result column="out_date" property="outDate" jdbcType="TIMESTAMP" />
+    <result column="out_doctor" property="outDoctor" jdbcType="VARCHAR" />
+    <result column="implement_status" property="implementStatus" jdbcType="VARCHAR" />
+    <result column="remake" property="remake" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, outdt_number, prisoner_number, out_type, out_date, out_doctor, implement_status, 
+    remake
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from out_doctor
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from out_doctor
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.alibaba.medical.pojo.OutDoctor" >
+    insert into out_doctor (id, outdt_number, prisoner_number, 
+      out_type, out_date, out_doctor, 
+      implement_status, remake)
+    values (#{id,jdbcType=BIGINT}, #{outdtNumber,jdbcType=BIGINT}, #{prisonerNumber,jdbcType=BIGINT}, 
+      #{outType,jdbcType=VARCHAR}, #{outDate,jdbcType=TIMESTAMP}, #{outDoctor,jdbcType=VARCHAR}, 
+      #{implementStatus,jdbcType=VARCHAR}, #{remake,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.alibaba.medical.pojo.OutDoctor" >
+    insert into out_doctor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="outdtNumber != null" >
+        outdt_number,
+      </if>
+      <if test="prisonerNumber != null" >
+        prisoner_number,
+      </if>
+      <if test="outType != null" >
+        out_type,
+      </if>
+      <if test="outDate != null" >
+        out_date,
+      </if>
+      <if test="outDoctor != null" >
+        out_doctor,
+      </if>
+      <if test="implementStatus != null" >
+        implement_status,
+      </if>
+      <if test="remake != null" >
+        remake,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="outdtNumber != null" >
+        #{outdtNumber,jdbcType=BIGINT},
+      </if>
+      <if test="prisonerNumber != null" >
+        #{prisonerNumber,jdbcType=BIGINT},
+      </if>
+      <if test="outType != null" >
+        #{outType,jdbcType=VARCHAR},
+      </if>
+      <if test="outDate != null" >
+        #{outDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outDoctor != null" >
+        #{outDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="implementStatus != null" >
+        #{implementStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remake != null" >
+        #{remake,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alibaba.medical.pojo.OutDoctor" >
+    update out_doctor
+    <set >
+      <if test="outdtNumber != null" >
+        outdt_number = #{outdtNumber,jdbcType=BIGINT},
+      </if>
+      <if test="prisonerNumber != null" >
+        prisoner_number = #{prisonerNumber,jdbcType=BIGINT},
+      </if>
+      <if test="outType != null" >
+        out_type = #{outType,jdbcType=VARCHAR},
+      </if>
+      <if test="outDate != null" >
+        out_date = #{outDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outDoctor != null" >
+        out_doctor = #{outDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="implementStatus != null" >
+        implement_status = #{implementStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remake != null" >
+        remake = #{remake,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alibaba.medical.pojo.OutDoctor" >
+    update out_doctor
+    set outdt_number = #{outdtNumber,jdbcType=BIGINT},
+      prisoner_number = #{prisonerNumber,jdbcType=BIGINT},
+      out_type = #{outType,jdbcType=VARCHAR},
+      out_date = #{outDate,jdbcType=TIMESTAMP},
+      out_doctor = #{outDoctor,jdbcType=VARCHAR},
+      implement_status = #{implementStatus,jdbcType=VARCHAR},
+      remake = #{remake,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

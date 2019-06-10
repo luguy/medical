@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alibaba.medical.dao.DrugMapper" >
+  <resultMap id="BaseResultMap" type="com.alibaba.medical.pojo.Drug" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="drug_number" property="drugNumber" jdbcType="BIGINT" />
+    <result column="drug_name" property="drugName" jdbcType="VARCHAR" />
+    <result column="drug_category" property="drugCategory" jdbcType="VARCHAR" />
+    <result column="recipe_type" property="recipeType" jdbcType="BIT" />
+    <result column="packing_unit" property="packingUnit" jdbcType="BIT" />
+    <result column="drug_spec" property="drugSpec" jdbcType="VARCHAR" />
+    <result column="drug_price" property="drugPrice" jdbcType="VARCHAR" />
+    <result column="drug_validity" property="drugValidity" jdbcType="VARCHAR" />
+    <result column="drug_vender" property="drugVender" jdbcType="VARCHAR" />
+    <result column="drug_stock" property="drugStock" jdbcType="INTEGER" />
+    <result column="drug_usage" property="drugUsage" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="target_dept" property="targetDept" jdbcType="BIT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, drug_number, drug_name, drug_category, recipe_type, packing_unit, drug_spec, 
+    drug_price, drug_validity, drug_vender, drug_stock, drug_usage, remark, target_dept, 
+    create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from drug
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from drug
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.alibaba.medical.pojo.Drug" >
+    insert into drug (id, drug_number, drug_name, 
+      drug_category, recipe_type, packing_unit, 
+      drug_spec, drug_price, drug_validity, 
+      drug_vender, drug_stock, drug_usage, 
+      remark, target_dept, create_date, 
+      update_date)
+    values (#{id,jdbcType=BIGINT}, #{drugNumber,jdbcType=BIGINT}, #{drugName,jdbcType=VARCHAR}, 
+      #{drugCategory,jdbcType=VARCHAR}, #{recipeType,jdbcType=BIT}, #{packingUnit,jdbcType=BIT}, 
+      #{drugSpec,jdbcType=VARCHAR}, #{drugPrice,jdbcType=VARCHAR}, #{drugValidity,jdbcType=VARCHAR}, 
+      #{drugVender,jdbcType=VARCHAR}, #{drugStock,jdbcType=INTEGER}, #{drugUsage,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{targetDept,jdbcType=BIT}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.alibaba.medical.pojo.Drug" >
+    insert into drug
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="drugNumber != null" >
+        drug_number,
+      </if>
+      <if test="drugName != null" >
+        drug_name,
+      </if>
+      <if test="drugCategory != null" >
+        drug_category,
+      </if>
+      <if test="recipeType != null" >
+        recipe_type,
+      </if>
+      <if test="packingUnit != null" >
+        packing_unit,
+      </if>
+      <if test="drugSpec != null" >
+        drug_spec,
+      </if>
+      <if test="drugPrice != null" >
+        drug_price,
+      </if>
+      <if test="drugValidity != null" >
+        drug_validity,
+      </if>
+      <if test="drugVender != null" >
+        drug_vender,
+      </if>
+      <if test="drugStock != null" >
+        drug_stock,
+      </if>
+      <if test="drugUsage != null" >
+        drug_usage,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="targetDept != null" >
+        target_dept,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="drugNumber != null" >
+        #{drugNumber,jdbcType=BIGINT},
+      </if>
+      <if test="drugName != null" >
+        #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugCategory != null" >
+        #{drugCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="recipeType != null" >
+        #{recipeType,jdbcType=BIT},
+      </if>
+      <if test="packingUnit != null" >
+        #{packingUnit,jdbcType=BIT},
+      </if>
+      <if test="drugSpec != null" >
+        #{drugSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="drugPrice != null" >
+        #{drugPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="drugValidity != null" >
+        #{drugValidity,jdbcType=VARCHAR},
+      </if>
+      <if test="drugVender != null" >
+        #{drugVender,jdbcType=VARCHAR},
+      </if>
+      <if test="drugStock != null" >
+        #{drugStock,jdbcType=INTEGER},
+      </if>
+      <if test="drugUsage != null" >
+        #{drugUsage,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="targetDept != null" >
+        #{targetDept,jdbcType=BIT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alibaba.medical.pojo.Drug" >
+    update drug
+    <set >
+      <if test="drugNumber != null" >
+        drug_number = #{drugNumber,jdbcType=BIGINT},
+      </if>
+      <if test="drugName != null" >
+        drug_name = #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugCategory != null" >
+        drug_category = #{drugCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="recipeType != null" >
+        recipe_type = #{recipeType,jdbcType=BIT},
+      </if>
+      <if test="packingUnit != null" >
+        packing_unit = #{packingUnit,jdbcType=BIT},
+      </if>
+      <if test="drugSpec != null" >
+        drug_spec = #{drugSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="drugPrice != null" >
+        drug_price = #{drugPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="drugValidity != null" >
+        drug_validity = #{drugValidity,jdbcType=VARCHAR},
+      </if>
+      <if test="drugVender != null" >
+        drug_vender = #{drugVender,jdbcType=VARCHAR},
+      </if>
+      <if test="drugStock != null" >
+        drug_stock = #{drugStock,jdbcType=INTEGER},
+      </if>
+      <if test="drugUsage != null" >
+        drug_usage = #{drugUsage,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="targetDept != null" >
+        target_dept = #{targetDept,jdbcType=BIT},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alibaba.medical.pojo.Drug" >
+    update drug
+    set drug_number = #{drugNumber,jdbcType=BIGINT},
+      drug_name = #{drugName,jdbcType=VARCHAR},
+      drug_category = #{drugCategory,jdbcType=VARCHAR},
+      recipe_type = #{recipeType,jdbcType=BIT},
+      packing_unit = #{packingUnit,jdbcType=BIT},
+      drug_spec = #{drugSpec,jdbcType=VARCHAR},
+      drug_price = #{drugPrice,jdbcType=VARCHAR},
+      drug_validity = #{drugValidity,jdbcType=VARCHAR},
+      drug_vender = #{drugVender,jdbcType=VARCHAR},
+      drug_stock = #{drugStock,jdbcType=INTEGER},
+      drug_usage = #{drugUsage,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      target_dept = #{targetDept,jdbcType=BIT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

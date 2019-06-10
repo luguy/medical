@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alibaba.medical.dao.DeptEmpMapper" >
+  <resultMap id="BaseResultMap" type="com.alibaba.medical.pojo.DeptEmp" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="emp_name" property="empName" jdbcType="VARCHAR" />
+    <result column="emp_status" property="empStatus" jdbcType="BIT" />
+    <result column="emp_account" property="empAccount" jdbcType="VARCHAR" />
+    <result column="emp_gender" property="empGender" jdbcType="BIT" />
+    <result column="emp_birthday" property="empBirthday" jdbcType="VARCHAR" />
+    <result column="emp_number" property="empNumber" jdbcType="BIGINT" />
+    <result column="emp_phone" property="empPhone" jdbcType="VARCHAR" />
+    <result column="office_phone" property="officePhone" jdbcType="VARCHAR" />
+    <result column="emp_email" property="empEmail" jdbcType="VARCHAR" />
+    <result column="emp_address" property="empAddress" jdbcType="VARCHAR" />
+    <result column="emp_function" property="empFunction" jdbcType="VARCHAR" />
+    <result column="emp_identity" property="empIdentity" jdbcType="BIT" />
+    <result column="emp_area" property="empArea" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="dept_id" property="deptId" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, emp_name, emp_status, emp_account, emp_gender, emp_birthday, emp_number, emp_phone, 
+    office_phone, emp_email, emp_address, emp_function, emp_identity, emp_area, remark, 
+    dept_id, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from dept_emp
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dept_emp
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.alibaba.medical.pojo.DeptEmp" >
+    insert into dept_emp (id, emp_name, emp_status, 
+      emp_account, emp_gender, emp_birthday, 
+      emp_number, emp_phone, office_phone, 
+      emp_email, emp_address, emp_function, 
+      emp_identity, emp_area, remark, 
+      dept_id, create_date, update_date
+      )
+    values (#{id,jdbcType=BIGINT}, #{empName,jdbcType=VARCHAR}, #{empStatus,jdbcType=BIT}, 
+      #{empAccount,jdbcType=VARCHAR}, #{empGender,jdbcType=BIT}, #{empBirthday,jdbcType=VARCHAR}, 
+      #{empNumber,jdbcType=BIGINT}, #{empPhone,jdbcType=VARCHAR}, #{officePhone,jdbcType=VARCHAR}, 
+      #{empEmail,jdbcType=VARCHAR}, #{empAddress,jdbcType=VARCHAR}, #{empFunction,jdbcType=VARCHAR}, 
+      #{empIdentity,jdbcType=BIT}, #{empArea,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{deptId,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.alibaba.medical.pojo.DeptEmp" >
+    insert into dept_emp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="empName != null" >
+        emp_name,
+      </if>
+      <if test="empStatus != null" >
+        emp_status,
+      </if>
+      <if test="empAccount != null" >
+        emp_account,
+      </if>
+      <if test="empGender != null" >
+        emp_gender,
+      </if>
+      <if test="empBirthday != null" >
+        emp_birthday,
+      </if>
+      <if test="empNumber != null" >
+        emp_number,
+      </if>
+      <if test="empPhone != null" >
+        emp_phone,
+      </if>
+      <if test="officePhone != null" >
+        office_phone,
+      </if>
+      <if test="empEmail != null" >
+        emp_email,
+      </if>
+      <if test="empAddress != null" >
+        emp_address,
+      </if>
+      <if test="empFunction != null" >
+        emp_function,
+      </if>
+      <if test="empIdentity != null" >
+        emp_identity,
+      </if>
+      <if test="empArea != null" >
+        emp_area,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="deptId != null" >
+        dept_id,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="empName != null" >
+        #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="empStatus != null" >
+        #{empStatus,jdbcType=BIT},
+      </if>
+      <if test="empAccount != null" >
+        #{empAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="empGender != null" >
+        #{empGender,jdbcType=BIT},
+      </if>
+      <if test="empBirthday != null" >
+        #{empBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="empNumber != null" >
+        #{empNumber,jdbcType=BIGINT},
+      </if>
+      <if test="empPhone != null" >
+        #{empPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="officePhone != null" >
+        #{officePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="empEmail != null" >
+        #{empEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="empAddress != null" >
+        #{empAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="empFunction != null" >
+        #{empFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="empIdentity != null" >
+        #{empIdentity,jdbcType=BIT},
+      </if>
+      <if test="empArea != null" >
+        #{empArea,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alibaba.medical.pojo.DeptEmp" >
+    update dept_emp
+    <set >
+      <if test="empName != null" >
+        emp_name = #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="empStatus != null" >
+        emp_status = #{empStatus,jdbcType=BIT},
+      </if>
+      <if test="empAccount != null" >
+        emp_account = #{empAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="empGender != null" >
+        emp_gender = #{empGender,jdbcType=BIT},
+      </if>
+      <if test="empBirthday != null" >
+        emp_birthday = #{empBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="empNumber != null" >
+        emp_number = #{empNumber,jdbcType=BIGINT},
+      </if>
+      <if test="empPhone != null" >
+        emp_phone = #{empPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="officePhone != null" >
+        office_phone = #{officePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="empEmail != null" >
+        emp_email = #{empEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="empAddress != null" >
+        emp_address = #{empAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="empFunction != null" >
+        emp_function = #{empFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="empIdentity != null" >
+        emp_identity = #{empIdentity,jdbcType=BIT},
+      </if>
+      <if test="empArea != null" >
+        emp_area = #{empArea,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        dept_id = #{deptId,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alibaba.medical.pojo.DeptEmp" >
+    update dept_emp
+    set emp_name = #{empName,jdbcType=VARCHAR},
+      emp_status = #{empStatus,jdbcType=BIT},
+      emp_account = #{empAccount,jdbcType=VARCHAR},
+      emp_gender = #{empGender,jdbcType=BIT},
+      emp_birthday = #{empBirthday,jdbcType=VARCHAR},
+      emp_number = #{empNumber,jdbcType=BIGINT},
+      emp_phone = #{empPhone,jdbcType=VARCHAR},
+      office_phone = #{officePhone,jdbcType=VARCHAR},
+      emp_email = #{empEmail,jdbcType=VARCHAR},
+      emp_address = #{empAddress,jdbcType=VARCHAR},
+      emp_function = #{empFunction,jdbcType=VARCHAR},
+      emp_identity = #{empIdentity,jdbcType=BIT},
+      emp_area = #{empArea,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      dept_id = #{deptId,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

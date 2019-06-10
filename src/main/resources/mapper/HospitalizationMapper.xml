@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alibaba.medical.dao.HospitalizationMapper" >
+  <resultMap id="BaseResultMap" type="com.alibaba.medical.pojo.Hospitalization" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="hospital_number" property="hospitalNumber" jdbcType="BIGINT" />
+    <result column="prisoner_number" property="prisonerNumber" jdbcType="BIGINT" />
+    <result column="hospital_result" property="hospitalResult" jdbcType="VARCHAR" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="main_doctor" property="mainDoctor" jdbcType="VARCHAR" />
+    <result column="ward_type" property="wardType" jdbcType="VARCHAR" />
+    <result column="final_conclusion" property="finalConclusion" jdbcType="VARCHAR" />
+    <result column="remake" property="remake" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, hospital_number, prisoner_number, hospital_result, start_date, end_date, main_doctor, 
+    ward_type, final_conclusion, remake
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from hospitalization
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from hospitalization
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.alibaba.medical.pojo.Hospitalization" >
+    insert into hospitalization (id, hospital_number, prisoner_number, 
+      hospital_result, start_date, end_date, 
+      main_doctor, ward_type, final_conclusion, 
+      remake)
+    values (#{id,jdbcType=BIGINT}, #{hospitalNumber,jdbcType=BIGINT}, #{prisonerNumber,jdbcType=BIGINT}, 
+      #{hospitalResult,jdbcType=VARCHAR}, #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{mainDoctor,jdbcType=VARCHAR}, #{wardType,jdbcType=VARCHAR}, #{finalConclusion,jdbcType=VARCHAR}, 
+      #{remake,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.alibaba.medical.pojo.Hospitalization" >
+    insert into hospitalization
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="hospitalNumber != null" >
+        hospital_number,
+      </if>
+      <if test="prisonerNumber != null" >
+        prisoner_number,
+      </if>
+      <if test="hospitalResult != null" >
+        hospital_result,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="mainDoctor != null" >
+        main_doctor,
+      </if>
+      <if test="wardType != null" >
+        ward_type,
+      </if>
+      <if test="finalConclusion != null" >
+        final_conclusion,
+      </if>
+      <if test="remake != null" >
+        remake,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="hospitalNumber != null" >
+        #{hospitalNumber,jdbcType=BIGINT},
+      </if>
+      <if test="prisonerNumber != null" >
+        #{prisonerNumber,jdbcType=BIGINT},
+      </if>
+      <if test="hospitalResult != null" >
+        #{hospitalResult,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mainDoctor != null" >
+        #{mainDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="wardType != null" >
+        #{wardType,jdbcType=VARCHAR},
+      </if>
+      <if test="finalConclusion != null" >
+        #{finalConclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="remake != null" >
+        #{remake,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alibaba.medical.pojo.Hospitalization" >
+    update hospitalization
+    <set >
+      <if test="hospitalNumber != null" >
+        hospital_number = #{hospitalNumber,jdbcType=BIGINT},
+      </if>
+      <if test="prisonerNumber != null" >
+        prisoner_number = #{prisonerNumber,jdbcType=BIGINT},
+      </if>
+      <if test="hospitalResult != null" >
+        hospital_result = #{hospitalResult,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mainDoctor != null" >
+        main_doctor = #{mainDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="wardType != null" >
+        ward_type = #{wardType,jdbcType=VARCHAR},
+      </if>
+      <if test="finalConclusion != null" >
+        final_conclusion = #{finalConclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="remake != null" >
+        remake = #{remake,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alibaba.medical.pojo.Hospitalization" >
+    update hospitalization
+    set hospital_number = #{hospitalNumber,jdbcType=BIGINT},
+      prisoner_number = #{prisonerNumber,jdbcType=BIGINT},
+      hospital_result = #{hospitalResult,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      main_doctor = #{mainDoctor,jdbcType=VARCHAR},
+      ward_type = #{wardType,jdbcType=VARCHAR},
+      final_conclusion = #{finalConclusion,jdbcType=VARCHAR},
+      remake = #{remake,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alibaba.medical.dao.PrisonMapper" >
+  <resultMap id="BaseResultMap" type="com.alibaba.medical.pojo.Prison" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="prison_id" property="prisonId" jdbcType="BIGINT" />
+    <result column="prison_number" property="prisonNumber" jdbcType="BIGINT" />
+    <result column="prison_type" property="prisonType" jdbcType="VARCHAR" />
+    <result column="prison_name" property="prisonName" jdbcType="VARCHAR" />
+    <result column="doctor_number" property="doctorNumber" jdbcType="BIGINT" />
+    <result column="number" property="number" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, prison_id, prison_number, prison_type, prison_name, doctor_number, number, status, 
+    create_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from prison
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from prison
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.alibaba.medical.pojo.Prison" >
+    insert into prison (id, prison_id, prison_number, 
+      prison_type, prison_name, doctor_number, 
+      number, status, create_date, 
+      remark)
+    values (#{id,jdbcType=BIGINT}, #{prisonId,jdbcType=BIGINT}, #{prisonNumber,jdbcType=BIGINT}, 
+      #{prisonType,jdbcType=VARCHAR}, #{prisonName,jdbcType=VARCHAR}, #{doctorNumber,jdbcType=BIGINT}, 
+      #{number,jdbcType=BIGINT}, #{status,jdbcType=BIT}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.alibaba.medical.pojo.Prison" >
+    insert into prison
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="prisonId != null" >
+        prison_id,
+      </if>
+      <if test="prisonNumber != null" >
+        prison_number,
+      </if>
+      <if test="prisonType != null" >
+        prison_type,
+      </if>
+      <if test="prisonName != null" >
+        prison_name,
+      </if>
+      <if test="doctorNumber != null" >
+        doctor_number,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="prisonId != null" >
+        #{prisonId,jdbcType=BIGINT},
+      </if>
+      <if test="prisonNumber != null" >
+        #{prisonNumber,jdbcType=BIGINT},
+      </if>
+      <if test="prisonType != null" >
+        #{prisonType,jdbcType=VARCHAR},
+      </if>
+      <if test="prisonName != null" >
+        #{prisonName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorNumber != null" >
+        #{doctorNumber,jdbcType=BIGINT},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alibaba.medical.pojo.Prison" >
+    update prison
+    <set >
+      <if test="prisonId != null" >
+        prison_id = #{prisonId,jdbcType=BIGINT},
+      </if>
+      <if test="prisonNumber != null" >
+        prison_number = #{prisonNumber,jdbcType=BIGINT},
+      </if>
+      <if test="prisonType != null" >
+        prison_type = #{prisonType,jdbcType=VARCHAR},
+      </if>
+      <if test="prisonName != null" >
+        prison_name = #{prisonName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorNumber != null" >
+        doctor_number = #{doctorNumber,jdbcType=BIGINT},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alibaba.medical.pojo.Prison" >
+    update prison
+    set prison_id = #{prisonId,jdbcType=BIGINT},
+      prison_number = #{prisonNumber,jdbcType=BIGINT},
+      prison_type = #{prisonType,jdbcType=VARCHAR},
+      prison_name = #{prisonName,jdbcType=VARCHAR},
+      doctor_number = #{doctorNumber,jdbcType=BIGINT},
+      number = #{number,jdbcType=BIGINT},
+      status = #{status,jdbcType=BIT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

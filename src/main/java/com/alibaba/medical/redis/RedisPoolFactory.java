@@ -2,6 +2,7 @@ package com.alibaba.medical.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
@@ -12,6 +13,7 @@ import redis.clients.jedis.JedisPoolConfig;
  * @Date 2019/6/10 17:35
  * @Version 1.0
  **/
+@Component
 public class RedisPoolFactory {
     @Autowired
     RedisConfig redisConfig;

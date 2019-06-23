@@ -2,6 +2,8 @@ package com.alibaba.medical.util;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
+import java.util.Date;
+
 /**
  * @ClassName MD5Util
  * @Description MD5工具类
@@ -26,5 +28,11 @@ public class MD5Util {
     public static String inputPassToDBPass(String inputPass){
         String str = salt.charAt(0) + salt.charAt(2) + inputPass + salt.charAt(3) + salt.charAt(5);
         return md5(str);
+    }
+
+    public static void main(String[] args) {
+        String admin = inputPassToDBPass("admin");
+        System.out.println(admin);
+        System.out.println(new Date().getTime());
     }
 }

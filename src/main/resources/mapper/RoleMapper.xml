@@ -118,4 +118,14 @@
     where username = #{username}
     and password = #{password}
   </select>
+
+  <select id="selectRoleByType" parameterType="int" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from role
+    where
+    <![CDATA[
+        type > #{type}
+    ]]>
+  </select>
 </mapper>

@@ -16,7 +16,7 @@ public class Role {
 
     private String password;
 
-    private Boolean type;
+    private int type;
 
     private Date createDate;
 

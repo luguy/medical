@@ -17,6 +17,6 @@ public class RoleVO {
 
     private String password;
 
-    private Boolean type;
+    private int type;
 
 }

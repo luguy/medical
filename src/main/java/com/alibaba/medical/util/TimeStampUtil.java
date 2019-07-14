@@ -6,6 +6,7 @@ package com.alibaba.medical.util;
  */
 public class TimeStampUtil {
 
+
     public static Long timeStamp(){
         return System.currentTimeMillis();
     }

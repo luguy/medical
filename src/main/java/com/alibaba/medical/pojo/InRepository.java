@@ -1,5 +1,7 @@
 package com.alibaba.medical.pojo;
 
+import com.alibaba.medical.enums.AuditStatusEnum;
+import com.alibaba.medical.enums.ClearingEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,8 +38,8 @@ public class InRepository {
 
     private String remark;
 
-    private Boolean status;
+    private Integer status= AuditStatusEnum.AUDIT_NO.getCode();
 
-    private Boolean clearing;
+    private Integer clearing= ClearingEnum.CLEARING_NO.getCode();
 
 }

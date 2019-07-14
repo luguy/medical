@@ -1,5 +1,6 @@
 package com.alibaba.medical.pojo;
 
+import com.alibaba.medical.enums.AuditStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,7 +25,7 @@ public class OutRepository {
 
     private String recipient;
 
-    private Boolean status;
+    private Integer status= AuditStatusEnum.AUDIT_NO.getCode();
 
     private String remark;
 

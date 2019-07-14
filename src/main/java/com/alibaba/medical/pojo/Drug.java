@@ -1,5 +1,8 @@
 package com.alibaba.medical.pojo;
 
+import com.alibaba.medical.enums.PackingUnitEnum;
+import com.alibaba.medical.enums.RecipeTypeEnum;
+import com.alibaba.medical.enums.TargetDeptEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,9 +21,9 @@ public class Drug {
 
     private String drugCategory;
 
-    private Boolean recipeType;
+    private Integer recipeType= RecipeTypeEnum.ONESELF.getCode();
 
-    private Boolean packingUnit;
+    private Integer packingUnit= PackingUnitEnum.BOX.getCode();
 
     private String drugSpec;
 
@@ -36,7 +39,7 @@ public class Drug {
 
     private String remark;
 
-    private Boolean targetDept;
+    private Integer targetDept= TargetDeptEnum.PHARMACY.getCode();
 
     private Date createDate;
 

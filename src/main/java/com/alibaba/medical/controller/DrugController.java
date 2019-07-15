@@ -5,9 +5,8 @@ import com.alibaba.medical.pageUtil.PageRequest;
 import com.alibaba.medical.pageUtil.PageResult;
 import com.alibaba.medical.pojo.Drug;
 import com.alibaba.medical.service.IDrugService;
-import com.alibaba.medical.util.DataUtil;
+import com.alibaba.medical.util.VOConverter;
 import com.alibaba.medical.vo.DrugVO;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +42,7 @@ public class DrugController {
                                @RequestParam(value = "recipe", defaultValue = "全部") String recipeType,
                                @RequestParam(value = "recipe", defaultValue = "") String drugName,
                                @RequestParam(value = "page", defaultValue = "1") Integer page,
-                               @RequestParam(value = "size", defaultValue = "10") Integer size){
+                               @RequestParam(value = "size", defaultValue = "2") Integer size){
         PageRequest pageRequest=new PageRequest(page,size);
         ServerResponse response=iDrugService.list(drugCategory,recipeType,drugName,pageRequest);
         if(response.isSuccess()){
@@ -52,13 +51,7 @@ public class DrugController {
             List<DrugVO> listVO=new ArrayList<>();
             for (Drug drug : list) {
                 DrugVO drugVO=new DrugVO();
-                BeanUtils.copyProperties(drug,drugVO);
-                if(drug.getDrugStock()<=30){
-                    drugVO.setStockWarning("库存不足");
-                }
-                if(DataUtil.daysBetween(drug.getDrugValidity())<=30){
-                    drugVO.setStockWarning("即将过期");
-                }
+                VOConverter.drugToVO(drug,drugVO);//Drug转化为VO
                 listVO.add(drugVO);
             }
             pageResult.setContent(listVO);

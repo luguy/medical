@@ -26,6 +26,17 @@ public class DrugServiceImpl implements IDrugService {
     @Autowired
     DrugMapper drugMapper;
 
+
+    /**
+     * create by: luguy
+     * description: 查询药品
+     * create time: 2019/7/15 12:01
+     * @params  * @Param: drugCategory
+     * @Param: recipeType
+     * @Param: drugName
+     * @Param: pageRequest
+     * @return com.alibaba.medical.common.ServerResponse
+     */
     @Override
     public ServerResponse list(String drugCategory, String recipeType,String drugName,PageRequest pageRequest) {
         StringBuffer subSql=new StringBuffer("where ");
@@ -54,10 +65,25 @@ public class DrugServiceImpl implements IDrugService {
         }else {
             hashMap.put("subSql", subSql.toString());
         }
+        PageResult pageResult=selectListPage(hashMap,pageRequest);
+        return ServerResponse.createBySuccess(pageResult);
+    }
+
+    /**
+     * create by: luguy
+     * description: 根据分页请求获取药品列表数据
+     * create time: 2019/7/15 12:00
+     * @params  * @Param: hashMap
+     * @Param: pageRequest
+     * @return com.alibaba.medical.pageUtil.PageResult
+     */
+    private PageResult selectListPage(HashMap<Object, Object> hashMap,PageRequest pageRequest){
         PageHelper.startPage(pageRequest.getPageNum(), pageRequest.getPageSize());//分页插件拦截mybitis的查询请求
         List<Drug> list=drugMapper.selectList(hashMap);
         PageResult pageResult= PageUtils.getPageResult(new PageInfo<>(list));
-        return ServerResponse.createBySuccess(pageResult);
+        return pageResult;
     }
+
+
 
 }
